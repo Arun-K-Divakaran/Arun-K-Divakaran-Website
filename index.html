@@ -12,6 +12,9 @@
         #banner p {
             margin-left: 20px; /* Adjust this value to create the desired space */
         }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body class="is-preload">
@@ -69,6 +72,7 @@
                 <div class="inner">
                     <h2 class="major">All Projects</h2>
                     <section class="features">
+                        <!-- Show only the first four articles by default -->
                         <article>
                             <a href="#" class="image"><img src="images/Simple Sales Dashboard_page-0001 (1).jpg" alt="" /></a>
                             <h3 class="major">Interactive Sales Dashboard</h3>
@@ -89,14 +93,15 @@
                             <h3 class="major">Disney+ Hotstar Power BI Dashboard</h3>
                             <a href="https://app.powerbi.com/links/1crzh4JqDE?ctid=d882f936-2f42-457c-ad0a-beb10ddf70f5&pbi_source=linkShare" class="special">View Project</a>
                         </article>
-                        <article>
+                        <!-- Hidden articles -->
+                        <article class="hidden">
                             <a href="#" class="image"><img src="images/Disney+ Hotstar Dashboard_page-0001.jpg" alt="" /></a>
                             <h3 class="major">Disney+ Hotstar Power BI Dashboard</h3>
                             <a href="https://app.powerbi.com/links/1crzh4JqDE?ctid=d882f936-2f42-457c-ad0a-beb10ddf70f5&pbi_source=linkShare" class="special">View Project</a>
                         </article>
                     </section>
                     <ul class="actions">
-                        <li><a href="#" class="button">Browse All</a></li>
+                        <li><a href="#" class="button" id="browseAllBtn">Browse All</a></li>
                     </ul>
                 </div>
             </section>
@@ -123,6 +128,24 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+        document.getElementById("browseAllBtn").addEventListener("click", function(event) {
+            // Prevent the default action (jumping to the top)
+            event.preventDefault();
+
+            // Reveal all hidden articles
+            var hiddenArticles = document.querySelectorAll(".hidden");
+            hiddenArticles.forEach(function(article) {
+                article.classList.remove("hidden");
+            });
+
+            // Optionally hide the "Browse All" button after revealing all articles
+            this.style.display = "none";
+
+            // Scroll to the revealed articles to ensure they are in view
+            document.querySelector(".features").scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
 
 </body>
 </html>
